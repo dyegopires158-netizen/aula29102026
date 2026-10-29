@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!-- Declara que o documento usa HTML5 -->
+<html lang="pt-BR">
+<head>
+  <!-- Aceita acentos e caracteres especiais (ç, ã, é...) -->
+  <meta charset="UTF-8" />
+  <!-- Faz a página se ajustar bem em celulares -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mural da Turma</title>
+  <!-- Liga o arquivo de estilos (CSS) -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>Mural da Turma</h1>
+    <p class="subtitulo">Digite seu nome para encontrar seu recado no mural.</p>
+
+    <!-- Campo de busca: o JS "escuta" o que é digitado aqui -->
+    <label for="busca" class="sr-only">Buscar nome</label>
+    <!-- Linha com o campo de busca e o botão de limpar lado a lado -->
+    <div class="busca-linha">
+      <input type="text" id="busca" placeholder="Digite seu nome..." autocomplete="off" />
+      <!-- type="button" evita que o botão tente enviar formulário -->
+      <button type="button" id="limpar">Limpar</button>
+    </div>
+
+    <!-- Mostra quantos itens estão na tela (o JS preenche) -->
+    <p id="contador" class="contador" aria-live="polite"></p>
+
+    <!-- Lista vazia: o JS cria os cartões do array aqui dentro -->
+    <section id="mural" class="mural"></section>
+  </main>
+
+  <!-- O script vem por último para o HTML já existir quando o JS rodar -->
+  <script src="script.js"></script>
+</body>
+</html>
