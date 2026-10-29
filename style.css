@@ -83,6 +83,27 @@ mark { background: #ffe58a; padding: 0 2px; }
 /* Mensagem quando nada é encontrado */
 .vazio { grid-column: 1 / -1; padding: 24px; text-align: center; }
 
+/* ===== Tabela de produtos ===== */
+.produtos { margin-top: 48px; }
+.produtos h2 { margin: 0 0 16px; font-size: 1.5rem; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;   /* junta as bordas das células em uma só */
+  background: var(--papel);
+  border: 1px solid var(--borda);
+}
+th, td {
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--borda);
+}
+thead th { background: var(--destaque); color: #fff; }
+tbody tr:nth-child(even) { background: #f7f3e8; }  /* linhas alternadas */
+tbody tr:hover { background: #ffe58a; }            /* destaca a linha sob o mouse */
+.num { text-align: right; }                        /* números alinhados à direita */
+.total { margin: 12px 0 0; font-weight: bold; text-align: right; }
+
 /* Esconde visualmente, mas mantém para leitores de tela */
 .sr-only {
   position: absolute; width: 1px; height: 1px;

@@ -8,6 +8,9 @@ Ao digitar no campo de busca, a lista é filtrada pelo nome (ignora acentos e ma
 - `style.css` – aparência (cores em variáveis, grid responsivo)
 - `script.js` – lê o array, filtra e exibe (todo comentado passo a passo)
 
+## Tabela de produtos
+Além do mural, a página lê o array `dadosDyego` (Videogames: produto, categoria, quantidade e preço) e mostra numa tabela, com o preço em reais e o valor total do estoque (`reduce`).
+
 ## Como usar
 Abra o `index.html` no navegador. Para trocar os dados, edite o array `alunos` no `script.js`.
 

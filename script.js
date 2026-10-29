@@ -190,3 +190,63 @@ botaoLimpar.addEventListener("click", limparBusca);
 // Ao abrir a página, mostra todos os nomes do array
 exibir(alunos);
 
+
+/* =====================================================================
+   10) TABELA DE PRODUTOS (array de objetos -> linhas de tabela)
+   Aqui o array tem outro formato: cada objeto representa um PRODUTO
+   com 4 propriedades: produto, categoria, quantidade e preco.
+   (Os números ficam sem aspas: são number, então dá para fazer conta.)
+   ===================================================================== */
+const dadosDyego = [
+  { produto: "PlayStation 5",  categoria: "Console",   quantidade: 6,  preco: 3500 },
+  { produto: "Xbox Series X",  categoria: "Console",   quantidade: 4,  preco: 3200 },
+  { produto: "Controle Gamer", categoria: "Acessório", quantidade: 15, preco: 350 },
+  { produto: "Headset Gamer",  categoria: "Acessório", quantidade: 20, preco: 250 }
+];
+
+const corpoTabela  = document.getElementById("corpoTabela");  // <tbody> vazio
+const totalEstoque = document.getElementById("totalEstoque"); // <p> do total
+
+/* Formata número como dinheiro brasileiro: 3500 -> "R$ 3.500,00"
+   Intl.NumberFormat é um recurso nativo do navegador para isso. */
+const formatoReal = new Intl.NumberFormat("pt-BR", {
+  style: "currency",
+  currency: "BRL"
+});
+
+/* Cria UMA célula <td> com o texto dado (e uma classe opcional). */
+function criarCelula(texto, classe) {
+  const td = document.createElement("td"); // cria <td></td>
+  td.textContent = texto;                  // coloca o texto de forma segura
+  if (classe) td.className = classe;       // só aplica a classe se foi informada
+  return td;
+}
+
+/* Lê o array e desenha uma linha <tr> para cada produto. */
+function exibirTabela(lista) {
+  corpoTabela.replaceChildren(); // limpa o tbody antes de desenhar
+
+  lista.forEach(function (item) {
+    const linha = document.createElement("tr"); // cria <tr></tr>
+    linha.append(
+      criarCelula(item.produto),
+      criarCelula(item.categoria),
+      criarCelula(item.quantidade, "num"),
+      criarCelula(formatoReal.format(item.preco), "num")
+    );
+    corpoTabela.appendChild(linha); // coloca a linha dentro do tbody
+  });
+
+  /* reduce percorre o array acumulando um valor.
+     Começa em 0 e, a cada produto, soma quantidade x preço. */
+  const total = lista.reduce(function (soma, item) {
+    return soma + item.quantidade * item.preco;
+  }, 0);
+
+  totalEstoque.textContent = "Valor total do estoque: " + formatoReal.format(total);
+}
+
+// Ao abrir a página, desenha a tabela com os produtos do array
+exibirTabela(dadosDyego);
+
+

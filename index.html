@@ -29,6 +29,26 @@
 
     <!-- Lista vazia: o JS cria os cartões do array aqui dentro -->
     <section id="mural" class="mural"></section>
+
+    <!-- ===== Tabela de produtos: o JS lê o array dadosDyego e preenche o tbody ===== -->
+    <section class="produtos">
+      <h2>Lista de produtos - Videogames</h2>
+      <table>
+        <!-- thead = cabeçalho da tabela; th = título de cada coluna -->
+        <thead>
+          <tr>
+            <th>Produto</th>
+            <th>Categoria</th>
+            <th class="num">Quantidade</th>
+            <th class="num">Preço</th>
+          </tr>
+        </thead>
+        <!-- tbody começa vazio: o JS cria uma linha <tr> para cada objeto do array -->
+        <tbody id="corpoTabela"></tbody>
+      </table>
+      <!-- O JS escreve aqui o valor total do estoque (quantidade x preço) -->
+      <p id="totalEstoque" class="total"></p>
+    </section>
   </main>
 
   <!-- O script vem por último para o HTML já existir quando o JS rodar -->
