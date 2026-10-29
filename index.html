@@ -1,57 +1,51 @@
 <!DOCTYPE html>
-<!-- Declara que o documento usa HTML5 -->
+<!-- Declara que o documento é HTML5 -->
 <html lang="pt-BR">
 <head>
-  <!-- Aceita acentos e caracteres especiais (ç, ã, é...) -->
-  <meta charset="UTF-8" />
-  <!-- Faz a página se ajustar bem em celulares -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mural da Turma</title>
-  <!-- Liga o arquivo de estilos (CSS) -->
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />                       <!-- aceita acentos -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- ajusta no celular -->
+  <title>Videogames - Dyego</title>
+  <link rel="stylesheet" href="style.css" />     <!-- liga o CSS -->
 </head>
 <body>
   <main class="container">
-    <h1>Mural da Turma</h1>
-    <p class="subtitulo">Digite seu nome para encontrar seu recado no mural.</p>
+    <h1>Videogames do Dyego</h1>
+    <p class="subtitulo">Lista de produtos lida de um array JavaScript.</p>
 
-    <!-- Campo de busca: o JS "escuta" o que é digitado aqui -->
-    <label for="busca" class="sr-only">Buscar nome</label>
-    <!-- Linha com o campo de busca e o botão de limpar lado a lado -->
-    <div class="busca-linha">
-      <input type="text" id="busca" placeholder="Digite seu nome..." autocomplete="off" />
-      <!-- type="button" evita que o botão tente enviar formulário -->
-      <button type="button" id="limpar">Limpar</button>
+    <!-- Barra de filtros: busca por nome e seleção de categoria -->
+    <div class="filtros">
+      <div class="campo">
+        <label for="busca">Buscar produto</label>
+        <input type="text" id="busca" placeholder="Ex.: PlayStation" autocomplete="off" />
+      </div>
+      <div class="campo">
+        <label for="categoria">Categoria</label>
+        <!-- As opções são criadas pelo JS a partir do array -->
+        <select id="categoria"></select>
+      </div>
     </div>
 
-    <!-- Mostra quantos itens estão na tela (o JS preenche) -->
-    <p id="contador" class="contador" aria-live="polite"></p>
+    <!-- Resumo (contador, unidades e valor do estoque) preenchido pelo JS -->
+    <p id="resumo" class="resumo" aria-live="polite"></p>
 
-    <!-- Lista vazia: o JS cria os cartões do array aqui dentro -->
-    <section id="mural" class="mural"></section>
-
-    <!-- ===== Tabela de produtos: o JS lê o array dadosDyego e preenche o tbody ===== -->
-    <section class="produtos">
-      <h2>Lista de produtos - Videogames</h2>
+    <!-- A tabela. O <tbody> começa vazio e o JS cria as linhas -->
+    <div class="tabela-rolagem">
       <table>
-        <!-- thead = cabeçalho da tabela; th = título de cada coluna -->
         <thead>
           <tr>
             <th>Produto</th>
             <th>Categoria</th>
-            <th class="num">Quantidade</th>
-            <th class="num">Preço</th>
+            <th class="num">Qtd.</th>
+            <th class="num">Preço (R$)</th>
           </tr>
         </thead>
-        <!-- tbody começa vazio: o JS cria uma linha <tr> para cada objeto do array -->
-        <tbody id="corpoTabela"></tbody>
+        <tbody id="lista"></tbody>
       </table>
-      <!-- O JS escreve aqui o valor total do estoque (quantidade x preço) -->
-      <p id="totalEstoque" class="total"></p>
-    </section>
+    </div>
   </main>
 
-  <!-- O script vem por último para o HTML já existir quando o JS rodar -->
+  <!-- ORDEM IMPORTANTE: primeiro os dados, depois a lógica que usa os dados -->
+  <script src="dados.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

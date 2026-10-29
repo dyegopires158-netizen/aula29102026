@@ -1,111 +1,59 @@
-/* ===== Variáveis: cores guardadas num só lugar, fácil de trocar ===== */
+/* ===== Variáveis de cor: mude aqui e muda no site todo ===== */
 :root {
-  --fundo: #f3efe6;      /* cor de fundo da página */
-  --papel: #fffdf7;      /* cor dos cartões (como post-it) */
-  --texto: #2b2a28;      /* cor do texto principal */
-  --destaque: #2f6f5e;   /* cor de destaque (verde) */
-  --borda: #d8d1c0;      /* cor das bordas */
+  --fundo: #f5f5f7;
+  --papel: #ffffff;
+  --texto: #1d1d1f;
+  --suave: #6e6e73;
+  --borda: #d2d2d7;
+  --destaque: #0a64c8;
 }
 
-/* Faz padding e borda contarem dentro da largura do elemento */
-* { box-sizing: border-box; }
+* { box-sizing: border-box; }   /* padding e borda contam dentro da largura */
 
 body {
   margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   background: var(--fundo);
   color: var(--texto);
 }
 
-/* Caixa central que limita a largura do conteúdo */
-.container {
-  max-width: 760px;
-  margin: 0 auto;      /* centraliza na horizontal */
-  padding: 40px 20px;
-}
+/* Caixa central que limita a largura */
+.container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
 
-h1 { margin: 0 0 8px; font-size: 2.2rem; }
-.subtitulo { margin: 0 0 24px; color: #5d5a54; }
+h1 { margin: 0 0 6px; font-size: 2rem; letter-spacing: -0.02em; }
+.subtitulo { margin: 0 0 24px; color: var(--suave); }
 
-/* Linha que junta o campo de busca e o botão (flex = itens lado a lado) */
-.busca-linha { display: flex; gap: 8px; }
+/* Filtros lado a lado (quebram para baixo em telas pequenas) */
+.filtros { display: flex; gap: 16px; flex-wrap: wrap; }
+.campo { flex: 1 1 220px; display: flex; flex-direction: column; gap: 6px; }
+.campo label { font-size: 0.9rem; color: var(--suave); }
 
-/* Botão "Limpar" */
-#limpar {
-  padding: 0 20px;
-  font-size: 1rem;
-  font-family: inherit;
-  color: #fff;
-  background: var(--destaque);
-  border: 0;
-  border-radius: 8px;
-  cursor: pointer;
-}
-#limpar:hover { filter: brightness(1.15); }
-#limpar:focus-visible { outline: 3px solid var(--texto); outline-offset: 2px; }
-
-/* Campo de busca */
-#busca {
-  flex: 1;            /* ocupa todo o espaço que sobrar na linha */
-  padding: 14px 16px;
-  font-size: 1.1rem;
-  border: 2px solid var(--borda);
-  border-radius: 8px;
-  background: var(--papel);
-  font-family: inherit;
-}
-/* Quando o campo está selecionado (importante para acessibilidade) */
-#busca:focus { outline: 3px solid var(--destaque); border-color: var(--destaque); }
-
-.contador { margin: 12px 0 20px; font-size: 0.95rem; color: #5d5a54; }
-
-/* Grid: cria colunas que se ajustam sozinhas conforme a largura da tela */
-.mural {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 16px;
-}
-
-/* Cada cartão criado pelo JS */
-.cartao {
-  background: var(--papel);
-  border: 1px solid var(--borda);
-  border-left: 6px solid var(--destaque);
-  border-radius: 6px;
-  padding: 16px;
-}
-.cartao h2 { margin: 0 0 6px; font-size: 1.15rem; }
-.cartao p  { margin: 0; line-height: 1.45; }
-
-/* Parte do nome que bate com a busca fica marcada */
-mark { background: #ffe58a; padding: 0 2px; }
-
-/* Mensagem quando nada é encontrado */
-.vazio { grid-column: 1 / -1; padding: 24px; text-align: center; }
-
-/* ===== Tabela de produtos ===== */
-.produtos { margin-top: 48px; }
-.produtos h2 { margin: 0 0 16px; font-size: 1.5rem; }
-
-table {
-  width: 100%;
-  border-collapse: collapse;   /* junta as bordas das células em uma só */
-  background: var(--papel);
-  border: 1px solid var(--borda);
-}
-th, td {
+input, select {
   padding: 12px 14px;
-  text-align: left;
-  border-bottom: 1px solid var(--borda);
+  font-size: 1rem;
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  background: var(--papel);
+  font-family: inherit;
 }
-thead th { background: var(--destaque); color: #fff; }
-tbody tr:nth-child(even) { background: #f7f3e8; }  /* linhas alternadas */
-tbody tr:hover { background: #ffe58a; }            /* destaca a linha sob o mouse */
-.num { text-align: right; }                        /* números alinhados à direita */
-.total { margin: 12px 0 0; font-weight: bold; text-align: right; }
+/* Contorno visível ao navegar com teclado */
+input:focus, select:focus { outline: 3px solid var(--destaque); outline-offset: 0; }
 
-/* Esconde visualmente, mas mantém para leitores de tela */
-.sr-only {
-  position: absolute; width: 1px; height: 1px;
-  overflow: hidden; clip: rect(0 0 0 0);
-}
+.resumo { margin: 16px 0; color: var(--suave); }
+
+/* Se a tabela for maior que a tela, rola só ela (não a página) */
+.tabela-rolagem { overflow-x: auto; background: var(--papel); border: 1px solid var(--borda); border-radius: 10px; }
+
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--borda); white-space: nowrap; }
+th { background: #fafafa; font-weight: 600; font-size: 0.9rem; }
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: #f0f6ff; }
+
+/* Números alinhados à direita ficam mais fáceis de comparar */
+.num { text-align: right; }
+
+/* Marca o trecho encontrado na busca */
+mark { background: #ffe58a; padding: 0 2px; border-radius: 2px; }
+
+.vazio { text-align: center; color: var(--suave); padding: 28px; }
